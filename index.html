@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UJA GROUPS</title>
+    <style>
+      /* Global Styles */
+      :root {
+        --primary-color: #00529b;
+        --secondary-color: #e7e7e7;
+        --accent-color: #f8b500;
+        --text-color: #333;
+        --light-text: #fff;
+        --dark-bg: #222;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f8f8f8;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--light-text);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+
+      .logo h1 {
+        font-size: 24px;
+        color: var(--primary-color);
+      }
+
+      .logo span {
+        color: var(--accent-color);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary-color);
+      }
+
+      .mobile-menu {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            rgba(0, 82, 155, 0.8),
+            rgba(0, 82, 155, 0.8)
+          ),
+          url("/api/placeholder/1200/600") center/cover no-repeat;
+        color: var(--light-text);
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent-color);
+        color: var(--dark-bg);
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #e0a500;
+      }
+
+      /* About Section */
+      .about {
+        padding: 80px 0;
+        background-color: var(--light-text);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title h2 {
+        font-size: 36px;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        color: #777;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+        padding-right: 30px;
+      }
+
+      .about-text h3 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+      }
+
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Stats Section */
+      .stats {
+        padding: 60px 0;
+        background-color: var(--primary-color);
+        color: var(--light-text);
+      }
+
+      .stats-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: center;
+      }
+
+      .stat-item {
+        flex: 1;
+        min-width: 200px;
+        margin: 20px;
+      }
+
+      .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stat-number span {
+        font-size: 24px;
+        margin-left: 5px;
+      }
+
+      .stat-text {
+        font-size: 18px;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 80px 0;
+        background-color: #f8f8f8;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .service-card {
+        background-color: var(--light-text);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-card:hover .service-image img {
+        transform: scale(1.1);
+      }
+
+      .service-content {
+        padding: 25px;
+      }
+
+      .service-content h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+      }
+
+      /* Partners Section */
+      .partners {
+        padding: 80px 0;
+        background-color: var(--light-text);
+      }
+
+      .partners-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .partners-title h2 {
+        font-size: 36px;
+        color: var(--primary-color);
+      }
+
+      .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 30px;
+      }
+
+      .partner-logo {
+        background-color: #f8f8f8;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .partner-logo:hover {
+        transform: scale(1.05);
+      }
+
+      .partner-logo img {
+        max-width: 100%;
+        max-height: 70px;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 80px 0;
+        background-color: #f8f8f8;
+      }
+
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .contact-info {
+        flex: 1;
+        min-width: 300px;
+        padding-right: 30px;
+      }
+
+      .contact-info h3 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: var(--primary-color);
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .contact-icon {
+        font-size: 20px;
+        color: var(--primary-color);
+        margin-right: 15px;
+        min-width: 25px;
+      }
+
+      .contact-text h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .contact-form {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .form-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #00407b;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-bg);
+        color: var(--light-text);
+        padding: 60px 0 20px;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 250px;
+        margin-bottom: 30px;
+      }
+
+      .footer-column h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: var(--accent-color);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #bbb;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--light-text);
+      }
+
+      .social-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .social-links li {
+        margin-right: 15px;
+      }
+
+      .social-links a {
+        color: #bbb;
+        font-size: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+      }
+
+      .footer-bottom p {
+        color: #999;
+        font-size: 14px;
+      }
+
+      /* Business Hours */
+      .business-hours {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        padding: 10px 0;
+      }
+
+      .hours-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hours-container p {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .hours-list {
+        display: flex;
+      }
+
+      .hours-list div {
+        margin-left: 20px;
+      }
+
+      /* Responsive */
+      @media (max-width: 991px) {
+        .about-content {
+          flex-direction: column;
+        }
+
+        .about-text {
+          padding-right: 0;
+          margin-bottom: 30px;
+        }
+
+        .contact-info {
+          padding-right: 0;
+          margin-bottom: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .hero h2 {
+          font-size: 36px;
+        }
+
+        .section-title h2 {
+          font-size: 30px;
+        }
+
+        .hours-list {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Business Hours Bar -->
+    <div class="business-hours">
+      <div class="container hours-container">
+        <p>Working Days</p>
+        <div class="hours-list">
+          <div>
+            <p>Monday - Friday: 09:00 - 18:00</p>
+          </div>
+          <div>
+            <p>Saturday: 09:00 - 18:00</p>
+          </div>
+          <div>
+            <p>Sunday: Closed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <h1>UJA<span>Groups</span></h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="mobile-menu">&#9776;</div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <h2>Quality Chemical Solutions for Industry</h2>
+        <p>
+          Global chemical industry expertise with international certifications
+          to provide high-quality products, sales, and supply chain solutions.
+        </p>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Us</h2>
+          <p>Committed to excellence in the chemical industry</p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>UJA GROUPS LLC</h3>
+            <p>
+              UJA GROUPS LLC has extensive experience in the fields of chemistry, supply chain, and
+              logistics in the global market. We have incorporated environmental
+              protection and ecological health as priorities in our operations.
+            </p>
+            <p>
+              In the regional chemical industry market, we have achieved the
+              production, sales, and supply of quality products with
+              international certifications.
+            </p>
+            <p>
+              Our dedicated team of professionals is committed to providing the
+              highest quality service to our customers, ensuring that their
+              needs are met with precision and care.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="/api/placeholder/600/400" alt="Our Laboratory" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-number">20<span>+</span></div>
+            <div class="stat-text">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">45<span>+</span></div>
+            <div class="stat-text">Services</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50<span>+</span></div>
+            <div class="stat-text">Team Members</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30<span>+</span></div>
+            <div class="stat-text">Products</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Services</h2>
+          <p>Providing comprehensive solutions for all your chemical needs</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="/api/placeholder/400/300"
+                alt="Chemical Manufacturing"
+              />
+            </div>
+            <div class="service-content">
+              <h3>Chemical Manufacturing</h3>
+              <p>
+                We produce high-quality chemicals for various industrial
+                applications, adhering to international quality standards and
+                safety protocols.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="/api/placeholder/400/300"
+                alt="Supply Chain Management"
+              />
+            </div>
+            <div class="service-content">
+              <h3>Supply Chain Management</h3>
+              <p>
+                Our logistics experts ensure timely delivery of chemical
+                products, optimizing routes and minimizing environmental impact.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="/api/placeholder/400/300" alt="Consulting Services" />
+            </div>
+            <div class="service-content">
+              <h3>Consulting Services</h3>
+              <p>
+                We provide expert advice on chemical usage, safety procedures,
+                and regulatory compliance to help clients optimize their
+                operations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="services" id="products">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Products</h2>
+          <p>Quality chemical products for diverse industrial applications</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-image">
+              <img src="/api/placeholder/400/300" alt="Industrial Chemicals" />
+            </div>
+            <div class="service-content">
+              <h3>Industrial Chemicals</h3>
+              <p>
+                High-grade chemicals for manufacturing processes, including
+                solvents, acids, bases, and specialty compounds.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="/api/placeholder/400/300" alt="Laboratory Reagents" />
+            </div>
+            <div class="service-content">
+              <h3>Laboratory Reagents</h3>
+              <p>
+                Premium-quality reagents for analytical and research
+                laboratories, ensuring precise and reliable results.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="/api/placeholder/400/300"
+                alt="Eco-friendly Solutions"
+              />
+            </div>
+            <div class="service-content">
+              <h3>Eco-friendly Solutions</h3>
+              <p>
+                Environmentally responsible chemical products that minimize
+                ecological impact while maintaining effectiveness.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+      <div class="container">
+        <div class="partners-title">
+          <h2>Our Partners</h2>
+        </div>
+        <div class="partners-grid">
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 1" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 2" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 3" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 4" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 5" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 6" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 7" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 8" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 9" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 10" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 11" />
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/150/80" alt="Partner 12" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>Get in touch with our team for any inquiries</p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Get In Touch</h3>
+            <div class="contact-detail">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <h4>Address</h4>
+                <p>
+                  123 Chemical Avenue, Industrial District, Baku, Azerbaijan
+                </p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">📞</div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <p>+994 70 123 45 67</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">✉️</div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>info@chemglobal.az</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">🕒</div>
+              <div class="contact-text">
+                <h4>Working Hours</h4>
+                <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                <p>Sunday: Closed</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form action="#" method="post">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>ChemGlobal</h3>
+            <p>
+              Global chemical industry expertise with international
+              certifications to provide high-quality products, sales, and supply
+              chain solutions.
+            </p>
+            <ul class="social-links">
+              <li><a href="#">📱</a></li>
+              <li><a href="#">📘</a></li>
+              <li><a href="#">📸</a></li>
+              <li><a href="#">🐦</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#partners">Partners</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Our Services</h3>
+            <ul class="footer-links">
+              <li><a href="#">Chemical Manufacturing</a></li>
+              <li><a href="#">Supply Chain Management</a></li>
+              <li><a href="#">Consulting Services</a></li>
+              <li><a href="#">Quality Control</a></li>
+              <li><a href="#">Research & Development</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact Info</h3>
+            <ul class="footer-links">
+              <li>📍 123 Chemical Avenue, Baku</li>
+              <li>📞 +994 70 123 45 67</li>
+              <li>✉️ info@chemglobal.az</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 ChemGlobal LLC. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      document
+        .querySelector(".mobile-menu")
+        .addEventListener("click", function () {
+          document.querySelector("nav ul").style.display =
+            document.querySelector("nav ul").style.display === "flex"
+              ? "none"
+              : "flex";
+        });
+    </script>
+  </body>
+</html>
